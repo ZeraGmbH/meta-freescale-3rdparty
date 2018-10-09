@@ -107,12 +107,13 @@
 		>;
 	};
 
-	pinctrl_flexcan2: flexcan2grp {
+  /* See comments can2 below */
+	/*pinctrl_flexcan2: flexcan2grp {
 		fsl,pins = <
 			MX6QDL_PAD_KEY_COL4__FLEXCAN2_TX	0x1b0b0
 			MX6QDL_PAD_KEY_ROW4__FLEXCAN2_RX	0x1b0b0
 		>;
-	};
+	};*/
 
 	pinctrl_hdmicec: hdmicecgrp {
 		fsl,pins = <
@@ -176,12 +177,6 @@
 			MX6QDL_PAD_EIM_D24__UART3_TX_DATA 0x1b0b1
 			MX6QDL_PAD_EIM_D23__UART3_CTS_B   0x1b0b1
 			MX6QDL_PAD_EIM_EB3__UART3_RTS_B   0x1b0b1
-		>;
-	};
-
-	pinctrl_usbotg: usbotggrp {
-		fsl,pins = <
-			MX6QDL_PAD_GPIO_4__GPIO1_IO04 		0x17059
 		>;
 	};
 
@@ -306,16 +301,18 @@
 	status = "disabled";
 };
 
-&can2 {
+/* These are mentioned in VAR-SOM-MX6v2.1 Datasheet but
+   VAR-MX6CustomBoard uses CAN2 RX as SDMM2 WP - so leave unset */
+/*&can2 {
 	pinctrl-names = "default";
 	pinctrl-0 = <&pinctrl_flexcan2>;
 	status = "disabled";
-};
+};*/
 
 &ecspi3 {
 	pinctrl-names = "default";
-	fsl,spi-num-chipselects = <1>;
 	pinctrl-0 = <&pinctrl_ecspi3>;
+	fsl,spi-num-chipselects = <1>;
 	cs-gpios = <&gpio4 24 0>;
 	status = "disabled";
 };
@@ -343,9 +340,9 @@
 };
 
 &i2c2 {
-	clock-frequency = <100000>;
 	pinctrl-names = "default";
 	pinctrl-0 = <&pinctrl_i2c2>;
+	clock-frequency = <100000>;
 	status = "okay";
 
 	pmic@8 {
@@ -538,8 +535,6 @@
 
 &usbotg {
 	vbus-supply = <&reg_usb_otg_vbus>;
-	pinctrl-names = "default";
-	pinctrl-0 = <&pinctrl_usbotg>;
 	disable-over-current;
 	status = "disabled";
 };

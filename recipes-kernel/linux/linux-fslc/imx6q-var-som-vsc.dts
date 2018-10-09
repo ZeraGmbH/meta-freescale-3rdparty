@@ -16,20 +16,20 @@
 	model = "Variscite i.MX6 VAR-SOM-MX6";
 	compatible = "variscite,var-som", "fsl,imx6q";
 
-	gpio-keys { /* OK */
+	gpio-keys {
 		compatible = "gpio-keys";
-		autorepeat;
+		pinctrl-names = "default";
+		pinctrl-0 = <&pinctrl_gpio_keys>;
 
-		back {
+		home {
 			gpios = <&gpio5 20 GPIO_ACTIVE_LOW>;
-			linux,code = <KEY_BACK>;
-			label = "Key Back";
+			linux,code = <KEY_HOME>;
+			label = "Key Home";
 			linux,input-type = <1>;
 			debounce-interval = <100>;
 			wakeup-source;
 		};
 	};
-
 
 	sound {
 		compatible = "simple-audio-card";
@@ -65,7 +65,7 @@
 	status = "okay";
 };
 
-&fec { /* OK */
+&fec {
 	status = "okay";
 };
 
@@ -73,7 +73,7 @@
 	status = "okay";
 };
 
-&i2c3 { /* OK */
+&i2c3 {
 	status = "okay";
 	rtc@0x68 {
 		compatible = "dallas,ds1337";
@@ -109,18 +109,21 @@
 	status = "okay";
 };
 
+&reg_usb_h1_vbus {
+	gpio = <&gpio4 15 GPIO_ACTIVE_HIGH>;
+	enable-active-high;
+	regulator-always-on;
+};
+
 &usbh1 {
 	status = "okay";
 };
 
-&usbotg {
-	status = "okay";
-};
-
-&usdhc2 { /* OK */
+&usdhc2 {
+	pinctrl-names = "default";
 	pinctrl-1 = <&pinctrl_usdhc2cdwp>;
 	cd-gpios = <&gpio4 14 GPIO_ACTIVE_LOW>;
-	wp-gpios = <&gpio4 15 GPIO_ACTIVE_HIGH>;
+	/*wp-gpios = <&gpio4 15 GPIO_ACTIVE_HIGH>;*/
 	status = "okay";
 };
 
