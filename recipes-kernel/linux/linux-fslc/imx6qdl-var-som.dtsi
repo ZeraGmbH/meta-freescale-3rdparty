@@ -348,9 +348,7 @@
 	pinctrl-0 = <&pinctrl_i2c2>;
 	status = "okay";
 
-	pmic@8 {
-		pinctrl-names = "default";
-		pinctrl-0 = <&pinctrl_pmic>;
+	pmic: pfuze100@8 {
 		compatible = "fsl,pfuze100";
 		reg = <0x08>;
 
