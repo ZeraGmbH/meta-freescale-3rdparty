@@ -3,10 +3,10 @@
 # version is not available in the linux-firmware repository.
 #
 SRC_URI_append_imx6qdl-variscite-som = "\
-    https://git.ti.com/ti-bt/service-packs/blobs/raw/5f73abe7c03631bb2596af27e41a94abcc70b009/initscripts/TIInit_11.8.32.bts;name=TIInit_11.8.32 \
+    https://git.ti.com/ti-bt/service-packs/blobs/raw/3aa1d75f3c2ae77f6e4d36194e3d281b899ab149/initscripts/TIInit_11.8.32.bts;name=TIInit_11.8.32 \
 "
-SRC_URI[TIInit_11.8.32.md5sum] = "a76788680905c30979038f9e6aa407f3"
-SRC_URI[TIInit_11.8.32.sha256sum] = "26ab0608e39fab95a6a55070c2f8364c92aad34442e8349abda71cee4da3277a"
+SRC_URI[TIInit_11.8.32.md5sum] = "9fde54d4c86dee4b31e07252bb7cff06"
+SRC_URI[TIInit_11.8.32.sha256sum] = "3e5fd8e12f2665914b9da8d70e4cad3dcd8a9cf09eb130218405dc5c6bbbc563"
 
 do_install_append_imx6qdl-variscite-som() {
     cp ${WORKDIR}/TIInit_11.8.32.bts ${D}/lib/firmware/ti-connectivity/
